@@ -14,7 +14,7 @@ function AddToDo({submitHandler}){
     return(
         <View>
             <TextInput
-                testID="input"
+                testID ="input"
                 style ={styles.input}
                 placeholder ='Type to do something'
                 onChangeText = {changeHandler}

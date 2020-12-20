@@ -7,7 +7,7 @@ import {
 function TodoItems({item, PressHandler}){
     return(
         <TouchableOpacity
-            testID="button"
+            testID = "button"
             //uzun basılırsa to do silinir 
             onLongPress = {() => PressHandler(item.key)}> 
             <Text style ={styles.item}>{item.text}</Text>          
