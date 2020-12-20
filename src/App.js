@@ -19,25 +19,31 @@ import AddToDo from './components/AddTodo';
  * 
  */
 function App() {
-  const [todos, setTodos] = useState([
-    { text: 'go to shopping', key: '0'},
-    { text: 'complete the homeworks', key: '1'},
-    { text: 'coding time!', key:'2'}
+  const [todos, setTodos] = useState([ //todo'ların tutulduğu state
+    
   ]);
   const PressHandler =(key) => {
     setTodos((prevTodos) => {
       return prevTodos.filter(todo => todo.key != key);
-
     })
   }
+  const toogleToDo =(key) => {
+    const index = todos.findIndex((u)=> u.key === key );
+    const newArray = [...todos];
+    newArray[index].isDone = !newArray[index].isDone;
+    setTodos(newArray);
+  };
+
   const submitHandler = (text) => {
-    if(text.length > -1 ) { //input boş ise eklenmez
-      setTodos((prevTodos) => {
-        return [
-          { text: text, key: Math.random().toString() },
-          ...prevTodos
-        ]
-      });
+    if(text.length > 0 ) { //input boş ise eklenme
+      const todoObj={
+        text, 
+        key: Math.random().toString(),
+        isDone: false,
+      }
+      setTodos(
+        [...todos,todoObj]
+      )
     }   
   }
   return(
@@ -55,7 +61,9 @@ function App() {
             renderItem = {({item}) => (
               <TodoItems 
                 item = {item}
-                PressHandler={PressHandler} 
+                PressHandler={PressHandler}
+                onClick={toogleToDo}
+
               />
             )}
           />

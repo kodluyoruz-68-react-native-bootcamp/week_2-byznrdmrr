@@ -4,12 +4,11 @@ import {
   StyleSheet,
   TouchableOpacity,  
 } from 'react-native';
-function TodoItems({item, PressHandler}){
+function TodoItems({item, PressHandler,onClick}){
     return(
         <TouchableOpacity
-            testID = "button"
-            //uzun basılırsa to do silinir 
-            onLongPress = {() => PressHandler(item.key)}> 
+            onLongPress = {() => PressHandler(item.key)}
+            onPress = {() => onClick(item.key)}> 
             <Text style ={styles.item}>{item.text}</Text>          
         </TouchableOpacity>
     )
